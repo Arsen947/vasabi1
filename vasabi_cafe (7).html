@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vasabi Cafe — Макарів</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Geologica:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --black: #0a0a08;
+  --dark: #111110;
+  --card: #161614;
+  --green: #4a7c59;
+  --green-light: #6aab7a;
+  --green-pale: #d4e8d4;
+  --cream: #f0ebe0;
+  --warm: #c8b98a;
+  --white: #f5f2eb;
+  --muted: rgba(245,242,235,0.45);
+  --border: rgba(245,242,235,0.08);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--black);
+  color: var(--white);
+  font-family: 'Geologica', sans-serif;
+  font-weight: 300;
+  overflow-x: hidden;
+}
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 20px 48px;
+  display: flex; align-items: center; justify-content: space-between;
+  background: linear-gradient(to bottom, rgba(10,10,8,0.95) 0%, transparent 100%);
+  backdrop-filter: blur(0px);
+  transition: background .3s;
+}
+nav.scrolled { background: rgba(10,10,8,0.97); backdrop-filter: blur(12px); }
+
+.nav-logo {
+  display: flex; align-items: center; gap: 12px;
+  text-decoration: none;
+}
+.nav-logo-circle {
+  width: 40px; height: 40px; border-radius: 50%;
+  border: 1.5px solid var(--green);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 15px; font-weight: 600;
+  color: var(--green-light);
+  letter-spacing: 0;
+}
+.nav-logo-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px; font-weight: 300;
+  color: var(--white); letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+.nav-links { display: flex; gap: 36px; list-style: none; }
+.nav-links a {
+  font-size: 11px; font-weight: 300; letter-spacing: 3px;
+  color: var(--muted); text-decoration: none; text-transform: uppercase;
+  transition: color .3s;
+}
+.nav-links a:hover { color: var(--green-light); }
+
+.nav-phone {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 16px; color: var(--warm);
+  text-decoration: none; letter-spacing: 1px;
+  transition: color .3s;
+}
+.nav-phone:hover { color: var(--white); }
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+  padding: 120px 48px 80px;
+}
+
+.hero-bg {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 50% 60%, rgba(74,124,89,0.12) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 30% at 20% 30%, rgba(74,124,89,0.06) 0%, transparent 60%),
+    linear-gradient(180deg, #0a0a08 0%, #0d100d 50%, #0a0a08 100%);
+}
+
+/* animated circles */
+.hero-circle {
+  position: absolute; border-radius: 50%;
+  border: 1px solid rgba(74,124,89,0.12);
+  animation: expand 8s ease-out infinite;
+}
+.hero-circle:nth-child(1) { width: 300px; height: 300px; top: 50%; left: 50%; transform: translate(-50%,-50%); animation-delay: 0s; }
+.hero-circle:nth-child(2) { width: 500px; height: 500px; top: 50%; left: 50%; transform: translate(-50%,-50%); animation-delay: 2s; }
+.hero-circle:nth-child(3) { width: 700px; height: 700px; top: 50%; left: 50%; transform: translate(-50%,-50%); animation-delay: 4s; }
+
+@keyframes expand {
+  0% { opacity: 0.4; transform: translate(-50%,-50%) scale(0.95); }
+  100% { opacity: 0; transform: translate(-50%,-50%) scale(1.05); }
+}
+
+.hero-badge {
+  font-size: 10px; letter-spacing: 5px; text-transform: uppercase;
+  color: var(--green-light); border: 1px solid rgba(106,171,122,0.3);
+  padding: 8px 20px; border-radius: 30px; margin-bottom: 32px;
+  animation: fadeUp 1s ease both;
+}
+
+.hero-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(64px, 12vw, 160px);
+  font-weight: 300; line-height: 0.9;
+  text-align: center; letter-spacing: -2px;
+  animation: fadeUp 1s ease .2s both;
+}
+.hero-title em {
+  font-style: italic; color: var(--green-light);
+}
+
+.hero-sub {
+  font-size: 12px; letter-spacing: 6px; text-transform: uppercase;
+  color: var(--muted); margin-top: 24px;
+  animation: fadeUp 1s ease .4s both;
+}
+
+.hero-divider {
+  width: 1px; height: 60px; background: linear-gradient(to bottom, var(--green), transparent);
+  margin: 40px auto 0;
+  animation: fadeUp 1s ease .6s both;
+}
+
+.hero-info {
+  display: flex; gap: 60px; margin-top: 40px;
+  animation: fadeUp 1s ease .7s both;
+}
+.hero-info-item { text-align: center; }
+.hero-info-label { font-size: 9px; letter-spacing: 4px; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+.hero-info-value { font-family: 'Cormorant Garamond', serif; font-size: 18px; color: var(--warm); }
+
+.hero-cta {
+  margin-top: 48px;
+  display: flex; gap: 16px;
+  animation: fadeUp 1s ease .8s both;
+}
+
+.btn-primary {
+  padding: 14px 36px;
+  background: var(--green);
+  color: var(--white);
+  font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+  text-decoration: none; border: none; cursor: none;
+  transition: background .3s, transform .2s;
+}
+.btn-primary:hover { background: var(--green-light); transform: translateY(-2px); }
+
+.btn-outline {
+  padding: 14px 36px;
+  border: 1px solid rgba(245,242,235,0.2);
+  color: var(--muted);
+  font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+  text-decoration: none; cursor: none;
+  transition: border-color .3s, color .3s, transform .2s;
+}
+.btn-outline:hover { border-color: var(--green-light); color: var(--green-light); transform: translateY(-2px); }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ABOUT STRIP */
+.strip {
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 20px 0; overflow: hidden;
+}
+.strip-inner {
+  display: flex; gap: 80px; width: max-content;
+  animation: marquee 18s linear infinite;
+}
+.strip-item {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px; font-style: italic;
+  color: var(--muted); white-space: nowrap;
+  display: flex; align-items: center; gap: 20px;
+}
+.strip-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--green); }
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* ABOUT */
+.about {
+  padding: 120px 48px;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 80px; align-items: center;
+  max-width: 1200px; margin: 0 auto;
+}
+
+.about-label {
+  font-size: 9px; letter-spacing: 5px; text-transform: uppercase;
+  color: var(--green-light); margin-bottom: 24px;
+}
+.about-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(36px, 5vw, 60px); font-weight: 300; line-height: 1.2;
+}
+.about-title em { font-style: italic; color: var(--green-light); }
+.about-text {
+  font-size: 15px; line-height: 1.9; color: var(--muted);
+  margin-top: 24px;
+}
+
+.about-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+.about-card {
+  background: var(--card); padding: 32px 28px;
+  border: 1px solid var(--border);
+  transition: border-color .3s;
+}
+.about-card:hover { border-color: rgba(74,124,89,0.3); }
+.about-card-icon { font-size: 28px; margin-bottom: 16px; }
+.about-card-title { font-family: 'Cormorant Garamond', serif; font-size: 20px; margin-bottom: 8px; }
+.about-card-text { font-size: 13px; color: var(--muted); line-height: 1.7; }
+
+/* MENU */
+.menu-section { padding: 120px 48px; max-width: 1200px; margin: 0 auto; }
+
+.section-header { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 64px; }
+.section-label { font-size: 9px; letter-spacing: 5px; text-transform: uppercase; color: var(--green-light); margin-bottom: 12px; }
+.section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(40px, 6vw, 72px); font-weight: 300; }
+
+.menu-tabs {
+  display: flex; gap: 0; margin-bottom: 48px;
+  border-bottom: 1px solid var(--border);
+}
+.menu-tab {
+  padding: 12px 24px; font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+  color: var(--muted); background: none; border: none; cursor: none;
+  border-bottom: 2px solid transparent; margin-bottom: -1px;
+  transition: color .3s, border-color .3s;
+}
+.menu-tab.active { color: var(--green-light); border-bottom-color: var(--green-light); }
+.menu-tab:hover { color: var(--white); }
+
+.menu-panel { display: none; }
+.menu-panel.active { display: block; }
+
+.menu-category { margin-bottom: 48px; }
+.menu-cat-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px; font-style: italic;
+  color: var(--warm); margin-bottom: 20px;
+  padding-bottom: 12px; border-bottom: 1px solid var(--border);
+}
+
+.menu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+.menu-item {
+  padding: 18px 20px; background: var(--card);
+  border: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: start;
+  gap: 16px; transition: background .3s, border-color .3s;
+}
+.menu-item:hover { background: #1a1a17; border-color: rgba(74,124,89,0.2); }
+.menu-item-left { flex: 1; }
+.menu-item-name { font-size: 14px; font-weight: 400; margin-bottom: 4px; }
+.menu-item-desc { font-size: 11px; color: var(--muted); line-height: 1.6; }
+.menu-item-weight { font-size: 10px; color: rgba(245,242,235,0.25); margin-top: 4px; }
+.menu-item-price {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px; color: var(--green-light);
+  white-space: nowrap; flex-shrink: 0;
+}
+
+/* GALLERY */
+.gallery-section { padding: 0 0 120px; }
+.gallery-label { font-size: 9px; letter-spacing: 5px; text-transform: uppercase; color: var(--green-light); text-align: center; margin-bottom: 16px; }
+.gallery-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(40px,6vw,72px); font-weight: 300; text-align: center; margin-bottom: 64px; }
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 280px 280px;
+  gap: 3px;
+}
+.gal-item {
+  overflow: hidden; position: relative;
+  background: var(--card); border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+}
+.gal-item:nth-child(1) { grid-column: span 2; grid-row: span 2; }
+.gal-item:nth-child(2) { grid-column: span 2; }
+.gal-emoji { font-size: 48px; opacity: 0.3; }
+.gal-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(74,124,89,0.15) 0%, transparent 60%);
+  opacity: 0; transition: opacity .4s;
+}
+.gal-item:hover .gal-overlay { opacity: 1; }
+.gal-text {
+  position: absolute; bottom: 20px; left: 20px;
+  font-family: 'Cormorant Garamond', serif; font-style: italic;
+  font-size: 18px; color: var(--white); opacity: 0;
+  transform: translateY(10px); transition: opacity .4s, transform .4s;
+}
+.gal-item:hover .gal-text { opacity: 1; transform: translateY(0); }
+
+/* CONTACT */
+.contact-section {
+  padding: 120px 48px;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 80px; align-items: start;
+  max-width: 1200px; margin: 0 auto;
+}
+
+.contact-info-row {
+  display: flex; gap: 20px; align-items: start;
+  padding: 24px 0; border-bottom: 1px solid var(--border);
+}
+.contact-icon { font-size: 20px; margin-top: 2px; flex-shrink: 0; }
+.contact-label { font-size: 9px; letter-spacing: 4px; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+.contact-value { font-family: 'Cormorant Garamond', serif; font-size: 20px; color: var(--white); }
+.contact-value a { color: var(--green-light); text-decoration: none; }
+.contact-value a:hover { color: var(--white); }
+
+.form-title { font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 300; margin-bottom: 32px; }
+.form-group { margin-bottom: 20px; }
+.form-label { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--muted); display: block; margin-bottom: 8px; }
+.form-input {
+  width: 100%; background: var(--card); border: 1px solid var(--border);
+  padding: 14px 16px; color: var(--white); font-family: 'Geologica', sans-serif;
+  font-size: 14px; font-weight: 300; outline: none;
+  transition: border-color .3s;
+}
+.form-input:focus { border-color: var(--green); }
+.form-input::placeholder { color: rgba(245,242,235,0.2); }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.form-submit {
+  width: 100%; padding: 16px;
+  background: var(--green); border: none;
+  color: var(--white); font-family: 'Geologica', sans-serif;
+  font-size: 11px; font-weight: 400; letter-spacing: 4px; text-transform: uppercase;
+  cursor: none; margin-top: 8px; transition: background .3s;
+}
+.form-submit:hover { background: var(--green-light); }
+
+/* MAP PLACEHOLDER */
+.map-placeholder {
+  grid-column: span 2;
+  height: 280px; background: var(--card);
+  border: 1px solid var(--border);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 12px;
+  font-family: 'Cormorant Garamond', serif; font-size: 20px;
+  color: var(--muted); font-style: italic;
+}
+
+/* FOOTER */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 40px 48px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.footer-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px; font-weight: 300; letter-spacing: 4px;
+  text-transform: uppercase; color: var(--muted);
+}
+.footer-copy { font-size: 10px; letter-spacing: 2px; color: rgba(245,242,235,0.2); }
+.footer-social { display: flex; gap: 20px; }
+.footer-social a { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color .3s; }
+.footer-social a:hover { color: var(--green-light); }
+
+/* CART */
+.cart-overlay { position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:200;opacity:0;pointer-events:none;transition:opacity .3s; }
+.cart-overlay.open { opacity:1;pointer-events:all; }
+.cart-drawer { position:fixed;top:0;right:0;width:420px;max-width:100vw;height:100vh;background:var(--dark);z-index:201;transform:translateX(100%);transition:transform .4s cubic-bezier(.16,1,.3,1);display:flex;flex-direction:column;border-left:1px solid var(--border); }
+.cart-drawer.open { transform:translateX(0); }
+.cart-header { padding:28px 24px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between; }
+.cart-title { font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:300; }
+.cart-close { background:none;border:none;color:var(--muted);font-size:24px;cursor:pointer;transition:color .2s; }
+.cart-close:hover { color:var(--white); }
+.cart-type { display:flex;margin:16px 24px;border:1px solid var(--border);border-radius:4px;overflow:hidden; }
+.cart-type-btn { flex:1;padding:10px;font-family:'Geologica',sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;background:none;border:none;color:var(--muted);cursor:pointer;transition:background .2s,color .2s; }
+.cart-type-btn.active { background:var(--green);color:var(--white); }
+.cart-items { flex:1;overflow-y:auto;padding:16px 24px; }
+.cart-empty { text-align:center;padding:60px 0;color:var(--muted);font-size:14px;font-family:'Cormorant Garamond',serif;font-style:italic; }
+.cart-item { display:flex;align-items:center;justify-content:space-between;padding:14px 0;border-bottom:1px solid var(--border);gap:12px; }
+.cart-item-name { font-size:14px;font-weight:400;margin-bottom:2px; }
+.cart-item-price { font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--green-light); }
+.cart-item-qty { display:flex;align-items:center;gap:8px; }
+.qty-btn { width:26px;height:26px;background:var(--card);border:1px solid var(--border);color:var(--white);font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s; }
+.qty-btn:hover { background:var(--green); }
+.qty-num { font-size:14px;min-width:20px;text-align:center; }
+.cart-footer { padding:20px 24px;border-top:1px solid var(--border); }
+.cart-total { display:flex;justify-content:space-between;align-items:center;margin-bottom:16px; }
+.cart-total-label { font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--muted); }
+.cart-total-price { font-family:'Cormorant Garamond',serif;font-size:28px;color:var(--green-light); }
+.cart-checkout { width:100%;padding:16px;background:var(--green);border:none;color:var(--white);font-family:'Geologica',sans-serif;font-size:11px;letter-spacing:4px;text-transform:uppercase;cursor:pointer;transition:background .3s; }
+.cart-checkout:hover { background:var(--green-light); }
+.add-to-cart-btn { margin-top:8px;padding:6px 12px;background:transparent;border:1px solid var(--border);color:var(--muted);font-family:'Geologica',sans-serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:all .2s;white-space:nowrap; }
+.add-to-cart-btn:hover { border-color:var(--green-light);color:var(--green-light); }
+.menu-item { flex-direction:column;align-items:flex-start; }
+.menu-item-top { display:flex;justify-content:space-between;align-items:start;width:100%;gap:16px; }
+
+/* PIZZA EXTRAS */
+.pizza-extra {
+  padding: 8px 16px;
+  border: 1px solid var(--border);
+  font-size: 12px;
+  letter-spacing: 1px;
+  color: var(--muted);
+  transition: border-color .2s, color .2s, background .2s;
+  cursor: default;
+}
+.pizza-extra:hover {
+  border-color: var(--green-light);
+  color: var(--green-light);
+  background: rgba(106,171,122,0.06);
+}
+
+/* SCROLL REVEAL */
+.reveal { opacity: 0; transform: translateY(40px); transition: opacity .8s ease, transform .8s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+@media (max-width: 768px) {
+  nav { padding: 16px 20px; }
+  .nav-links { display: none; }
+  .hero { padding: 100px 20px 60px; }
+  .hero-info { gap: 30px; flex-wrap: wrap; justify-content: center; }
+  .about { grid-template-columns: 1fr; padding: 80px 20px; gap: 40px; }
+  .menu-section { padding: 80px 20px; }
+  .menu-grid { grid-template-columns: 1fr; }
+  .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+  .gal-item:nth-child(1) { grid-column: span 2; grid-row: span 1; }
+  .gal-item:nth-child(2) { grid-column: span 2; }
+  .contact-section { grid-template-columns: 1fr; padding: 80px 20px; }
+  .form-row { grid-template-columns: 1fr; }
+  .map-placeholder { grid-column: span 1; }
+  footer { flex-direction: column; gap: 20px; text-align: center; padding: 40px 20px; }
+  .menu-tab { padding: 10px 14px; font-size: 9px; letter-spacing: 2px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-circle">V</div>
+    <span class="nav-logo-text">Vasabi</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">Про нас</a></li>
+    <li><a href="#menu">Меню</a></li>
+    <li><a href="#contact">Контакти</a></li>
+  </ul>
+  <div style="display:flex;align-items:center;gap:20px;">
+    <a href="tel:0681092750" class="nav-phone">068 109 27 50</a>
+    <button id="cart-btn" onclick="openCart()" style="position:relative;background:var(--green);border:none;color:var(--white);padding:10px 20px;font-family:'Geologica',sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;gap:8px;transition:background .3s;">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+      Кошик
+      <span id="cart-count" style="background:#e07070;color:#fff;border-radius:50%;width:18px;height:18px;font-size:10px;display:none;align-items:center;justify-content:center;position:absolute;top:-6px;right:-6px;">0</span>
+    </button>
+  </div>
+</nav>
+
+<!-- CART OVERLAY -->
+<div class="cart-overlay" id="cart-overlay" onclick="closeCart()"></div>
+<div class="cart-drawer" id="cart-drawer">
+  <div class="cart-header">
+    <div class="cart-title">Кошик</div>
+    <button class="cart-close" onclick="closeCart()">✕</button>
+  </div>
+  <div class="cart-type">
+    <button class="cart-type-btn active" id="type-here" onclick="setType('here')">🍽 В кафе</button>
+    <button class="cart-type-btn" id="type-go" onclick="setType('go')">🥡 З собою</button>
+  </div>
+
+  <!-- Форма для "В кафе" -->
+  <div id="dine-in-form" style="padding:0 24px 4px;border-bottom:1px solid var(--border);">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;">
+      <div>
+        <label style="font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:6px;">Дата *</label>
+        <input type="date" id="ci-date" class="form-input" style="padding:10px 12px;font-size:13px;">
+      </div>
+      <div>
+        <label style="font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:6px;">Час * (до 21:00)</label>
+        <input type="time" id="ci-time" class="form-input" style="padding:10px 12px;font-size:13px;" min="10:00" max="21:00">
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:12px;">
+      <div>
+        <label style="font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:6px;">Ім'я *</label>
+        <input type="text" id="ci-name" class="form-input" style="padding:10px 12px;font-size:13px;" placeholder="Ваше ім'я">
+      </div>
+      <div>
+        <label style="font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:6px;">Телефон *</label>
+        <input type="tel" id="ci-phone" class="form-input" style="padding:10px 12px;font-size:13px;" placeholder="0XXXXXXXXX">
+      </div>
+      <div>
+        <label style="font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:6px;">Гостей *</label>
+        <input type="number" id="ci-guests" class="form-input" style="padding:10px 12px;font-size:13px;" placeholder="2" min="1" max="50">
+      </div>
+    </div>
+    <div id="ci-error" style="color:#e07070;font-size:11px;letter-spacing:1px;margin-bottom:10px;display:none;"></div>
+  </div>
+
+  <div class="cart-items" id="cart-items">
+    <div class="cart-empty" id="cart-empty">Кошик порожній.<br>Додайте страви з меню.</div>
+  </div>
+  <div class="cart-footer">
+    <div class="cart-total">
+      <span class="cart-total-label">Разом</span>
+      <span class="cart-total-price" id="cart-total">0 ₴</span>
+    </div>
+    <button class="cart-checkout" onclick="checkout()">Оформити замовлення</button>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg">
+    <div class="hero-circle"></div>
+    <div class="hero-circle"></div>
+    <div class="hero-circle"></div>
+  </div>
+  <div class="hero-badge">Макарів · Затишне кафе на березі річки</div>
+  <h1 class="hero-title">Vasabi<br><em>Cafe</em></h1>
+  <p class="hero-sub">Українсько-японська кухня · Суші · Піца</p>
+  <div class="hero-divider"></div>
+  <div class="hero-info">
+    <div class="hero-info-item">
+      <div class="hero-info-label">Години роботи</div>
+      <div class="hero-info-value">10:00 – 22:00</div>
+    </div>
+    <div class="hero-info-item">
+      <div class="hero-info-label">Щодня</div>
+      <div class="hero-info-value">Без вихідних</div>
+    </div>
+    <div class="hero-info-item">
+      <div class="hero-info-label">Телефон</div>
+      <div class="hero-info-value">068 109 27 50</div>
+    </div>
+  </div>
+  <div class="hero-cta">
+    <a href="#menu" class="btn-primary">Переглянути меню</a>
+    <a href="#contact" class="btn-outline">Забронювати стіл</a>
+  </div>
+</section>
+
+<!-- STRIP -->
+<div class="strip">
+  <div class="strip-inner">
+    <span class="strip-item"><span class="strip-dot"></span>Суші та роли</span>
+    <span class="strip-item"><span class="strip-dot"></span>Японська кухня</span>
+    <span class="strip-item"><span class="strip-dot"></span>Українські страви</span>
+    <span class="strip-item"><span class="strip-dot"></span>Піца</span>
+    <span class="strip-item"><span class="strip-dot"></span>Банкети</span>
+    <span class="strip-item"><span class="strip-dot"></span>Суші та роли</span>
+    <span class="strip-item"><span class="strip-dot"></span>Японська кухня</span>
+    <span class="strip-item"><span class="strip-dot"></span>Українські страви</span>
+    <span class="strip-item"><span class="strip-dot"></span>Піца</span>
+    <span class="strip-item"><span class="strip-dot"></span>Банкети</span>
+    <span class="strip-item"><span class="strip-dot"></span>Суші та роли</span>
+    <span class="strip-item"><span class="strip-dot"></span>Японська кухня</span>
+    <span class="strip-item"><span class="strip-dot"></span>Українські страви</span>
+    <span class="strip-item"><span class="strip-dot"></span>Піца</span>
+    <span class="strip-item"><span class="strip-dot"></span>Банкети</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="reveal">
+    <div class="about-label">Про заклад</div>
+    <h2 class="about-title">Затишне місце,<br>де живе <em>смак</em></h2>
+    <p class="about-text">
+      Vasabi Cafe — це місце, де зустрічаються дві кулінарні традиції: тепла українська кухня та вишукана японська. Ми розташовані на березі річки в Макарові — приходьте відпочити, поїсти смачно і відчути атмосферу справжнього затишку.
+    </p>
+    <p class="about-text" style="margin-top: 16px;">
+      Свіжі інгредієнти, авторські роли, піца на тонкому тісті, домашні вареники та деруни — все це чекає на вас щодня з 10 ранку до 10 вечора.
+    </p>
+  </div>
+  <div class="about-cards reveal">
+    <div class="about-card">
+      <div class="about-card-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--green-light)" stroke-width="1.5" stroke-linecap="round"><ellipse cx="12" cy="12" rx="10" ry="6"/><path d="M2 12c0 3.3 4.5 6 10 6s10-2.7 10-6"/><line x1="12" y1="6" x2="12" y2="18"/></svg></div>
+      <div class="about-card-title">Суші та роли</div>
+      <div class="about-card-text">Філадельфія, дракони, каліфорнійські та гарячі роли — понад 30 позицій</div>
+    </div>
+    <div class="about-card">
+      <div class="about-card-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--green-light)" stroke-width="1.5" stroke-linecap="round"><path d="M3 12h18"/><path d="M3 12a9 9 0 0118 0"/><path d="M12 12v6"/><path d="M9 18h6"/></svg></div>
+      <div class="about-card-title">Піца</div>
+      <div class="about-card-text">12 видів піци на тонкому тісті з якісними інгредієнтами</div>
+    </div>
+    <div class="about-card">
+      <div class="about-card-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--green-light)" stroke-width="1.5" stroke-linecap="round"><path d="M3 11l9-9 9 9v9a2 2 0 01-2 2H5a2 2 0 01-2-2v-9z"/><polyline points="9,22 9,12 15,12 15,22"/></svg></div>
+      <div class="about-card-title">Українська кухня</div>
+      <div class="about-card-text">Вареники, деруни, котлета по-київськи, гаряча сковорідка</div>
+    </div>
+    <div class="about-card">
+      <div class="about-card-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--green-light)" stroke-width="1.5" stroke-linecap="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div>
+      <div class="about-card-title">Банкети</div>
+      <div class="about-card-text">Організуємо святкування для ваших особливих подій</div>
+    </div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section class="menu-section" id="menu">
+  <div class="section-header reveal">
+    <div>
+      <div class="section-label">Наше меню</div>
+      <h2 class="section-title">Що у нас є</h2>
+    </div>
+  </div>
+
+  <div class="menu-tabs">
+    <button class="menu-tab active" data-target="tab-sushi">Суші та роли</button>
+    <button class="menu-tab" data-target="tab-pizza">Піца</button>
+    <button class="menu-tab" data-target="tab-ukraine">Українська кухня</button>
+    <button class="menu-tab" data-target="tab-salads">Салати та супи</button>
+    <button class="menu-tab" data-target="tab-drinks">Напої та десерти</button>
+  </div>
+
+  <!-- SUSHI -->
+  <div class="menu-panel active" id="tab-sushi">
+    <div class="menu-category">
+      <div class="menu-cat-title">Класичні роли</div>
+      <div class="menu-grid">
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Арізона</div><div class="menu-item-desc">Крабова паличка, лосось, авокадо, крем-сир, салат, тобіко</div><div class="menu-item-weight">230 г</div></div><div class="menu-item-price">220 ₴</div></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Мікадо</div><div class="menu-item-desc">Вугор, лосось, крем-сир, мідії, огірок, ікра червона</div><div class="menu-item-weight">240 г</div></div><div class="menu-item-price">250 ₴</div></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Балтимор</div><div class="menu-item-desc">Лосось, тобіко, токуан, авокадо, салат, крем-сир</div><div class="menu-item-weight">210 г</div></div><div class="menu-item-price">200 ₴</div></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Філадельфія</div><div class="menu-item-desc">Крем-сир філадельфія</div><div class="menu-item-weight">270 г</div></div><div class="menu-item-price">270 ₴</div></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Філадельфія з вугрем</div><div class="menu-item-desc">Крем-сир, огірок, авокадо, вугор, унагі, кунжут</div><div class="menu-item-weight">240 г</div></div><div class="menu-item-price">270 ₴</div></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Філадельфія з хіяші</div><div class="menu-item-desc">Авокадо, крем-сир, лосось, хіяші, соус горіховий, кунжут</div><div class="menu-item-weight">270 г</div></div><div class="menu-item-price">270 ₴</div></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Червоний дракон</div><div class="menu-item-desc">Лосось, вугор, крем-сир, тобіко, авокадо</div><div class="menu-item-weight">240 г</div></div><div class="menu-item-price">270 ₴</div></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Золотий дракон</div><div class="menu-item-desc">Вугор, креветка, огірок, крем-сир, авокадо, соус унагі, кунжут</div><div class="menu-item-weight">270 г</div></div><div class="menu-item-price">270 ₴</div></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Зелений дракон</div><div class="menu-item-desc">Вугор, крем-сир, тобіко, авокадо, соус унагі, кунжут</div><div class="menu-item-weight">250 г</div></div><div class="menu-item-price">270 ₴</div></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Білий дракон</div><div class="menu-item-desc">Кунжут, крем-сир, лосось смажений, креветка, авокадо, спайсі соус</div><div class="menu-item-weight">250 г</div></div><div class="menu-item-price">270 ₴</div></div>
+      </div>
+    </div>
+    <div class="menu-category">
+      <div class="menu-cat-title">Гарячі роли</div>
+      <div class="menu-grid">
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Банзай</div><div class="menu-item-desc">Курка, крем-сир, помідор, ікра-тобіко, панірування</div><div class="menu-item-weight">280 г</div></div><div class="menu-item-price">200 ₴</div></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">В кляри з лососем</div><div class="menu-item-desc">Крем-сир, авокадо, лосось, соус спайс, соус унагі, кунжут, тобіко</div><div class="menu-item-weight">350 г</div></div><div class="menu-item-price">270 ₴</div></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">В кляри з креветкою та сніжним крабом</div><div class="menu-item-desc">Крем-сир, авокадо, огірок, сніжний краб, креветки</div><div class="menu-item-weight">350 г</div></div><div class="menu-item-price">270 ₴</div></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Темпура</div><div class="menu-item-desc">Крем-сир, креветка в темпурі, листя салату, тобіко</div><div class="menu-item-weight">260 г</div></div><div class="menu-item-price">270 ₴</div></div>
+      </div>
+    </div>
+    <div class="menu-category">
+      <div class="menu-cat-title">Сети та мікси</div>
+      <div class="menu-grid">
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Фірмовий мікс</div><div class="menu-item-desc">Золотий дракон, рол Балтимор, Аляска</div><div class="menu-item-weight">700 г</div></div><div class="menu-item-price">670 ₴</div></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Мураками</div><div class="menu-item-desc">Кіото холодний, Зелений дракон, Якудза, Макі лосось, Макі такуан</div><div class="menu-item-weight">930 г</div></div><div class="menu-item-price">940 ₴</div></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Каліфорнійський</div><div class="menu-item-desc">Каліфорнійський в кунжуті, в тобіко, в стружці тунця, Кіото гарячий рол</div><div class="menu-item-weight">880 г</div></div><div class="menu-item-price">780 ₴</div></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Ханамі</div><div class="menu-item-desc">Червоний дракон, Цунамі, Золотий дракон, Філадельфія, салат Хіяші Вакаме</div><div class="menu-item-weight">1120 г</div></div><div class="menu-item-price">1140 ₴</div></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Камікадзе</div><div class="menu-item-desc">Філадельфія з огірком, Рол з тунцем, Темпура, Танукі, Атлантика</div><div class="menu-item-weight">1230 г</div></div><div class="menu-item-price">1140 ₴</div></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">4 дракони</div><div class="menu-item-desc">Філадельфія, Червоний дракон, Зелений дракон, Білий дракон</div><div class="menu-item-weight">1010 г</div></div><div class="menu-item-price">1060 ₴</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PIZZA -->
+  <div class="menu-panel" id="tab-pizza">
+    <div class="menu-category">
+      <div class="menu-cat-title">Піца</div>
+      <div class="menu-grid">
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">М'ясна</div><div class="menu-item-desc">Цибуля, сир, шинка, помідори, свинина, зелень, томатний соус</div><div class="menu-item-weight">600 г</div></div><div class="menu-item-price">230 ₴</div></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">М'ясна з грибами</div><div class="menu-item-desc">Часниковий соус, філе курки, шинка, мисливські ковбаски, гриби, зелень</div><div class="menu-item-weight">550 г</div></div><div class="menu-item-price">230 ₴</div></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">4 сири</div><div class="menu-item-desc">Чотири різновиди сирів на часниковому соусі</div><div class="menu-item-weight">450 г</div></div><div class="menu-item-price">230 ₴</div></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Салямі</div><div class="menu-item-desc">Салямі, томатний соус, сир</div><div class="menu-item-weight">420 г</div></div><div class="menu-item-price">170 ₴</div></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Кальсоне</div><div class="menu-item-desc">Шинка, салямі, гриби, томатний соус, сир</div><div class="menu-item-weight">450 г</div></div><div class="menu-item-price">190 ₴</div></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Фірмова</div><div class="menu-item-desc">Томатний соус, сир, перець болгарський, мисливські ковбаски, шампіньйони, філе курки</div><div class="menu-item-weight">550 г</div></div><div class="menu-item-price">220 ₴</div></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Гавайська</div><div class="menu-item-desc">Філе курки, ананас, томатний соус, сир</div><div class="menu-item-weight">500 г</div></div><div class="menu-item-price">200 ₴</div></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Екзотика</div><div class="menu-item-desc">Соус часниковий, сир, бекон, помідор, цибуля порей, філе курки</div><div class="menu-item-weight">520 г</div></div><div class="menu-item-price">200 ₴</div></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Морська</div><div class="menu-item-desc">Мідії, гриби, томатний соус, цибуля, лосось, сир, зелень</div><div class="menu-item-weight">520 г</div></div><div class="menu-item-price">270 ₴</div></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Маргарита</div><div class="menu-item-desc">Соус томатний, помідор, сир</div><div class="menu-item-weight">430 г</div></div><div class="menu-item-price">160 ₴</div></div>
+      </div>
+    </div>
+
+    <!-- ДОДАТКИ ДО ПІЦИ -->
+    <div class="menu-category">
+      <div class="menu-cat-title">Додатки до піци</div>
+      <p style="font-size:12px;color:var(--muted);margin-bottom:20px;letter-spacing:1px;">1 позиція — 50 ₴</p>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;">
+        <div class="pizza-extra">Салямі</div>
+        <div class="pizza-extra">Шинка</div>
+        <div class="pizza-extra">Куряче філе</div>
+        <div class="pizza-extra">Свинина</div>
+        <div class="pizza-extra">Моцарела</div>
+        <div class="pizza-extra">Сир Український</div>
+        <div class="pizza-extra">Помідори</div>
+        <div class="pizza-extra">Ананас</div>
+        <div class="pizza-extra">Перець болг.</div>
+        <div class="pizza-extra">Печериці</div>
+        <div class="pizza-extra">Гриби</div>
+        <div class="pizza-extra">Зелень</div>
+        <div class="pizza-extra">Маслини</div>
+        <div class="pizza-extra">Бекон</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- UKRAINE -->
+  <div class="menu-panel" id="tab-ukraine">
+    <div class="menu-category">
+      <div class="menu-cat-title">Гарячі страви</div>
+      <div class="menu-grid">
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Котлета по-київськи</div><div class="menu-item-weight">90 г</div></div><div class="menu-item-price">140 ₴</div></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Шніцель курячий</div><div class="menu-item-weight">120 г</div></div><div class="menu-item-price">140 ₴</div></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Гаряча сковорідка</div><div class="menu-item-desc">Помідор, перець болгарський, спаржа, часник, зелень, гриби, цибуля, морква, телятина або філе курки</div><div class="menu-item-weight">350 г</div></div><div class="menu-item-price">350 ₴</div></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Пельмені в горщику</div><div class="menu-item-desc">Пельмені, морква, цибуля, гриби, сир, вершки, зелень</div><div class="menu-item-weight">250 г</div></div><div class="menu-item-price">220 ₴</div></div>
+      </div>
+    </div>
+    <div class="menu-category">
+      <div class="menu-cat-title">Вареники та деруни</div>
+      <div class="menu-grid">
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Вареники з м'ясом, шкварками та цибулею</div><div class="menu-item-weight">200/30 г</div></div><div class="menu-item-price">170 ₴</div></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Вареники з картоплею, шкварками та цибулею</div><div class="menu-item-weight">200/30 г</div></div><div class="menu-item-price">150 ₴</div></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Деруни класичні зі сметаною</div><div class="menu-item-weight">200/50 г</div></div><div class="menu-item-price">130 ₴</div></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Деруни з фаршем та сметаною</div><div class="menu-item-weight">250/50 г</div></div><div class="menu-item-price">180 ₴</div></div>
+      </div>
+    </div>
+    <div class="menu-category">
+      <div class="menu-cat-title">Фрі меню</div>
+      <div class="menu-grid">
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Картопля по-селянськи</div><div class="menu-item-desc">З часниковим соусом</div><div class="menu-item-weight">150 г</div></div><div class="menu-item-price">120 ₴</div></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Сирні палички</div><div class="menu-item-desc">З часниковим соусом</div><div class="menu-item-weight">180 г</div></div><div class="menu-item-price">170 ₴</div></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Нагетси</div><div class="menu-item-desc">Філе курки, панірування, соус на вибір</div><div class="menu-item-weight">100 г</div></div><div class="menu-item-price">130 ₴</div></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Креветки в темпурі</div><div class="menu-item-desc">З овочевим соусом</div><div class="menu-item-weight">5 шт</div></div><div class="menu-item-price">200 ₴</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SALADS -->
+  <div class="menu-panel" id="tab-salads">
+    <div class="menu-category">
+      <div class="menu-cat-title">Салати</div>
+      <div class="menu-grid">
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Цезар з креветками</div><div class="menu-item-desc">Пекінська капуста, грінки, помідор, яйце, пармезан, соус, креветки</div><div class="menu-item-weight">260 г</div></div><div class="menu-item-price">270 ₴</div></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Грецький</div><div class="menu-item-desc">Помідор, огірок, перець солодкий, маслини, цибуля, фета, листя салату</div><div class="menu-item-weight">280 г</div></div><div class="menu-item-price">230 ₴</div></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Салат Морівасе</div><div class="menu-item-desc">Пекінська капуста, морепродукти, кунжут, лосось, вугор, тобіко, авокадо, соус спайс, унагі</div><div class="menu-item-weight">250 г</div></div><div class="menu-item-price">280 ₴</div></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">З серцем</div><div class="menu-item-desc">Серце, селера, пекінка, морква, цибуля зелена, огірок, гірничо-солодкий соус</div><div class="menu-item-weight">280 г</div></div><div class="menu-item-price">250 ₴</div></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Теплий салат</div><div class="menu-item-desc">Спаржа, філе курки, перець болгарський, гриби, кунжут, вершки, соєвий соус</div><div class="menu-item-weight">250 г</div></div><div class="menu-item-price">220 ₴</div></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Хіяші Вакаме</div><div class="menu-item-desc">Водорості хіяші, горіховий соус</div><div class="menu-item-weight">100 г</div></div><div class="menu-item-price">130 ₴</div></div>
+      </div>
+    </div>
+    <div class="menu-category">
+      <div class="menu-cat-title">Супи</div>
+      <div class="menu-grid">
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Місо-суп з лососем</div><div class="menu-item-desc">Кунжут, водорості вакаме, сир тофу, лапша удон, лосось</div><div class="menu-item-weight">300 г</div></div><div class="menu-item-price">150 ₴</div></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Суп Том Ям з морепродуктами</div><div class="menu-item-desc">Кокосове молоко, бульйон, шампіньйони, помідори, паста Том Ям</div><div class="menu-item-weight">300 г</div></div><div class="menu-item-price">200 ₴</div></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Суп вершковий з лососем</div><div class="menu-item-weight">300 г</div></div><div class="menu-item-price">180 ₴</div></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Бульйон курячий</div><div class="menu-item-weight">300 г</div></div><div class="menu-item-price">100 ₴</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DRINKS -->
+  <div class="menu-panel" id="tab-drinks">
+    <div class="menu-category">
+      <div class="menu-cat-title">Десерти</div>
+      <div class="menu-grid">
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Млинці з морозивом та топінгом</div><div class="menu-item-weight">100/50/30 г</div></div><div class="menu-item-price">140 ₴</div></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Морозиво з топінгом</div><div class="menu-item-weight">150 г</div></div><div class="menu-item-price">120 ₴</div></div>
+      </div>
+    </div>
+    <div class="menu-category">
+      <div class="menu-cat-title">Гарячі напої</div>
+      <div class="menu-grid">
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Еспресо</div></div><div class="menu-item-price">35 ₴</div></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Американо</div></div><div class="menu-item-price">45 ₴</div></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Капучіно</div></div><div class="menu-item-price">80 ₴</div></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Лате</div></div><div class="menu-item-price">80 ₴</div></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Чай в асортименті</div></div><div class="menu-item-price">50 ₴</div></div>
+      </div>
+    </div>
+    <div class="menu-category">
+      <div class="menu-cat-title">Коктейлі б/а</div>
+      <div class="menu-grid">
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Молочний коктейль</div><div class="menu-item-desc">Молоко, морозиво, сироп, лід</div><div class="menu-item-weight">300 мл</div></div><div class="menu-item-price">80 ₴</div></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Мохіто б/а</div><div class="menu-item-desc">По сезону</div><div class="menu-item-weight">300 мл</div></div><div class="menu-item-price">80 ₴</div></div>
+        <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">Коктейль санрайс</div><div class="menu-item-desc">Сік апельсиновий, ананасовий, гренадин, лід</div><div class="menu-item-weight">300 мл</div></div><div class="menu-item-price">90 ₴</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section style="background: var(--dark); padding: 120px 0;" id="contact">
+  <div class="contact-section">
+    <div class="reveal">
+      <div class="section-label">Знайти нас</div>
+      <h2 class="section-title" style="margin-bottom: 48px;">Контакти</h2>
+      <div class="contact-info-row">
+        <div class="contact-icon">📍</div>
+        <div><div class="contact-label">Адреса</div><div class="contact-value">вул. Набережна, Макарів<br>Київська область, 08001</div></div>
+      </div>
+      <div class="contact-info-row">
+        <div class="contact-icon">📞</div>
+        <div><div class="contact-label">Телефон</div><div class="contact-value"><a href="tel:0681092750">068 109 27 50</a></div></div>
+      </div>
+      <div class="contact-info-row">
+        <div class="contact-icon">🕐</div>
+        <div><div class="contact-label">Години роботи</div><div class="contact-value">Щодня 10:00 – 22:00</div></div>
+      </div>
+      <div class="contact-info-row">
+        <div class="contact-icon">📸</div>
+        <div><div class="contact-label">Instagram</div><div class="contact-value"><a href="https://instagram.com/vasabi_makariv" target="_blank">@vasabi_makariv</a></div></div>
+      </div>
+    </div>
+    <div class="reveal">
+      <div class="form-title">Забронювати стіл</div>
+      <form id="booking-form" novalidate>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Ім'я *</label>
+          <input type="text" class="form-input" id="f-name" placeholder="Ваше ім'я" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Телефон *</label>
+          <input type="tel" class="form-input" id="f-phone" placeholder="0XX XXX XX XX" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Дата *</label>
+          <input type="date" class="form-input" id="f-date" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Кількість гостей *</label>
+          <input type="number" class="form-input" id="f-guests" placeholder="2" min="1" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Побажання</label>
+        <input type="text" class="form-input" id="f-notes" placeholder="Особливі побажання...">
+      </div>
+      <div id="form-error" style="color:#e07070;font-size:12px;letter-spacing:1px;margin-bottom:12px;display:none;"></div>
+      <div id="form-success" style="color:var(--green-light);font-size:12px;letter-spacing:1px;margin-bottom:12px;display:none;">Дякуємо! Ми зателефонуємо для підтвердження.</div>
+      <button type="submit" class="form-submit">Надіслати запит</button>
+      </form>
+    </div>
+    <div class="map-placeholder reveal" style="padding:0;overflow:hidden;border-radius:0;">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1000!2d29.8160796!3d50.4566126!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x472b4126a5564f29%3A0x4e447fbeeb28cbd1!2sVasabi!5e0!3m2!1suk!2sua!4v1700000000000!5m2!1suk!2sua"
+        width="100%" height="280" style="border:0;display:block;filter:grayscale(0.6) contrast(1.1);"
+        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<!-- TAKEAWAY -->
+<section style="padding: 80px 48px; border-top: 1px solid var(--border);">
+  <div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(2,1fr);gap:2px;" class="reveal">
+    <div class="about-card" style="text-align:center;padding:40px 28px;">
+      <div style="margin-bottom:20px;"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--green-light)" stroke-width="1.2" stroke-linecap="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg></div>
+      <div class="about-card-title">Замовити з собою</div>
+      <div class="about-card-text" style="margin-top:8px;">Оформіть замовлення через сайт або телефоном — приходьте і забирайте готове.</div>
+    </div>
+    <div class="about-card" style="text-align:center;padding:40px 28px;">
+      <div style="margin-bottom:20px;"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--green-light)" stroke-width="1.2" stroke-linecap="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div>
+      <div class="about-card-title">Оплата</div>
+      <div class="about-card-text" style="margin-top:8px;">Готівка, термінал,<br>Monobank · ПриватБанк</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Vasabi Cafe</div>
+  <div class="footer-social">
+    <a href="https://instagram.com/vasabi_makariv" target="_blank">Instagram</a>
+    <a href="tel:0681092750">068 109 27 50</a>
+  </div>
+  <div class="footer-copy">© 2025 Vasabi Cafe · Макарів</div>
+</footer>
+
+<script>
+// nav scroll
+window.addEventListener('scroll',()=>{
+  document.getElementById('nav').classList.toggle('scrolled',window.scrollY>60);
+});
+
+// таби
+document.querySelectorAll('.menu-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.menu-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.menu-panel').forEach(p => p.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById(tab.getAttribute('data-target')).classList.add('active');
+  });
+});
+
+// ===== КОШИК =====
+let cart = [];
+let orderType = 'here';
+
+function setType(t) {
+  orderType = t;
+  document.getElementById('type-here').classList.toggle('active', t==='here');
+  document.getElementById('type-go').classList.toggle('active', t==='go');
+  // показуємо форму тільки для "В кафе"
+  document.getElementById('dine-in-form').style.display = t==='here' ? 'block' : 'none';
+}
+
+function openCart() {
+  document.getElementById('cart-drawer').classList.add('open');
+  document.getElementById('cart-overlay').classList.add('open');
+}
+function closeCart() {
+  document.getElementById('cart-drawer').classList.remove('open');
+  document.getElementById('cart-overlay').classList.remove('open');
+}
+
+function addToCart(name, price) {
+  const existing = cart.find(i => i.name === name);
+  if (existing) {
+    existing.qty++;
+  } else {
+    cart.push({ name, price, qty: 1 });
+  }
+  renderCart();
+  openCart();
+}
+
+function changeQty(name, delta) {
+  const idx = cart.findIndex(i => i.name === name);
+  if (idx === -1) return;
+  cart[idx].qty += delta;
+  if (cart[idx].qty <= 0) cart.splice(idx, 1);
+  renderCart();
+}
+
+function renderCart() {
+  const container = document.getElementById('cart-items');
+  const empty = document.getElementById('cart-empty');
+  const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
+  const count = cart.reduce((s, i) => s + i.qty, 0);
+
+  // лічильник на кнопці
+  const badge = document.getElementById('cart-count');
+  badge.textContent = count;
+  badge.style.display = count > 0 ? 'flex' : 'none';
+
+  document.getElementById('cart-total').textContent = total + ' ₴';
+
+  if (cart.length === 0) {
+    empty.style.display = 'block';
+    // видаляємо старі items але залишаємо empty
+    container.querySelectorAll('.cart-item').forEach(el => el.remove());
+    return;
+  }
+  empty.style.display = 'none';
+  container.querySelectorAll('.cart-item').forEach(el => el.remove());
+
+  cart.forEach(item => {
+    const div = document.createElement('div');
+    div.className = 'cart-item';
+    div.innerHTML = `
+      <div style="flex:1">
+        <div class="cart-item-name">${item.name}</div>
+        <div class="cart-item-price">${item.price * item.qty} ₴</div>
+      </div>
+      <div class="cart-item-qty">
+        <button class="qty-btn" onclick="changeQty('${item.name.replace(/'/g,"\\'")}', -1)">−</button>
+        <span class="qty-num">${item.qty}</span>
+        <button class="qty-btn" onclick="changeQty('${item.name.replace(/'/g,"\\'")}', 1)">+</button>
+      </div>`;
+    container.appendChild(div);
+  });
+}
+
+function checkout() {
+  if (cart.length === 0) { alert('Кошик порожній!'); return; }
+
+  if (orderType === 'here') {
+    const name   = document.getElementById('ci-name').value.trim();
+    const phone  = document.getElementById('ci-phone').value.trim();
+    const date   = document.getElementById('ci-date').value;
+    const time   = document.getElementById('ci-time').value;
+    const guests = document.getElementById('ci-guests').value;
+    const err    = document.getElementById('ci-error');
+
+    if (!name) {
+      err.textContent = "Введіть ваше ім'я"; err.style.display='block'; return;
+    }
+    const digits = phone.replace(/\D/g,'');
+    if (digits.length !== 10) {
+      err.textContent = 'Введіть коректний номер (10 цифр)'; err.style.display='block'; return;
+    }
+    if (!date) {
+      err.textContent = 'Оберіть дату'; err.style.display='block'; return;
+    }
+    if (!time) {
+      err.textContent = 'Оберіть час'; err.style.display='block'; return;
+    }
+    // перевірка: час не пізніше 21:00
+    const [h, m] = time.split(':').map(Number);
+    if (h > 21 || (h === 21 && m > 0)) {
+      err.textContent = 'Останнє бронювання — до 21:00'; err.style.display='block'; return;
+    }
+    if (h < 10) {
+      err.textContent = 'Кафе відкривається о 10:00'; err.style.display='block'; return;
+    }
+    if (!guests || guests < 1) {
+      err.textContent = 'Вкажіть кількість гостей'; err.style.display='block'; return;
+    }
+    err.style.display = 'none';
+
+    const items = cart.map(i => `${i.name} x${i.qty} — ${i.price*i.qty}₴`).join('\n');
+    const total = cart.reduce((s,i)=>s+i.price*i.qty,0);
+    alert(`✅ Замовлення прийнято!\n\n🍽 В кафе\n📅 ${date} о ${time}\n👥 Гостей: ${guests}\n👤 ${name}\n📞 ${phone}\n\n${items}\n\nРазом: ${total}₴\n\nОчікуйте дзвінка для підтвердження.`);
+  } else {
+    const items = cart.map(i => `${i.name} x${i.qty} — ${i.price*i.qty}₴`).join('\n');
+    const total = cart.reduce((s,i)=>s+i.price*i.qty,0);
+    alert(`✅ Замовлення прийнято!\n\n🥡 З собою\n\n${items}\n\nРазом: ${total}₴\n\nЗателефонуємо для підтвердження.`);
+  }
+
+  cart = [];
+  renderCart();
+  closeCart();
+  // очищаємо форму
+  ['ci-name','ci-phone','ci-date','ci-time','ci-guests'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.value = '';
+  });
+}
+
+// додаємо кнопки до кожного menu-item після завантаження
+document.querySelectorAll('.menu-item').forEach(item => {
+  const nameEl = item.querySelector('.menu-item-name');
+  const priceEl = item.querySelector('.menu-item-price');
+  if (!nameEl || !priceEl) return;
+  const name = nameEl.textContent.trim();
+  const price = parseInt(priceEl.textContent.replace(/\D/g,''));
+  if (!name || !price) return;
+
+  // обгортаємо верхню частину
+  const top = document.createElement('div');
+  top.className = 'menu-item-top';
+  const children = [...item.children];
+  children.forEach(c => top.appendChild(c));
+  item.appendChild(top);
+
+  const btn = document.createElement('button');
+  btn.className = 'add-to-cart-btn';
+  btn.textContent = '+ До кошика';
+  btn.onclick = () => addToCart(name, price);
+  item.appendChild(btn);
+});
+
+// ===== ФОРМА =====
+const form = document.getElementById('booking-form');
+if (form) {
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    const name  = document.getElementById('f-name').value.trim();
+    const phone = document.getElementById('f-phone').value.trim();
+    const date  = document.getElementById('f-date').value;
+    const guests= document.getElementById('f-guests').value;
+    const err   = document.getElementById('form-error');
+    const ok    = document.getElementById('form-success');
+
+    // перевірка імені
+    if (!name) {
+      err.textContent = "Введіть ваше ім'я";
+      err.style.display = 'block'; ok.style.display = 'none'; return;
+    }
+    // перевірка телефону — рівно 10 цифр
+    const digits = phone.replace(/\D/g,'');
+    if (digits.length !== 10) {
+      err.textContent = 'Введіть коректний номер телефону (10 цифр, напр. 0681092750)';
+      err.style.display = 'block'; ok.style.display = 'none'; return;
+    }
+    if (!date) {
+      err.textContent = 'Оберіть дату';
+      err.style.display = 'block'; ok.style.display = 'none'; return;
+    }
+    if (!guests || guests < 1) {
+      err.textContent = 'Вкажіть кількість гостей';
+      err.style.display = 'block'; ok.style.display = 'none'; return;
+    }
+
+    err.style.display = 'none';
+    ok.style.display = 'block';
+    form.reset();
+    setTimeout(() => { ok.style.display = 'none'; }, 5000);
+  });
+}
+
+// reveal on scroll
+const observer = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible'); });
+},{threshold:0.15});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+</script>
+</body>
+</html>
